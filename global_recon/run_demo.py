@@ -76,11 +76,6 @@ if cached and osp.exists(out_file):
     out_dict = pickle.load(open(out_file, 'rb'))
 else:
     est_dict = pickle.load(open(pose_est_file, 'rb'))
-    temp_dict = {}
-    if args.multi:
-        for person_id in range(len(est_dict)):
-            temp_dict[person_id] = est_dict[person_id]
-        est_dict = temp_dict
     in_dict = {'est': est_dict, 'gt': dict(), 'gt_meta': dict(), 'seq_name': seq_name}
     # global optimization
     out_dict = grecon_model.optimize(in_dict)
